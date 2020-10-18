@@ -129,10 +129,13 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec'],
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+        disableMochaHooks: true
+    }]],
 
-
-    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -200,7 +203,7 @@ exports.config = {
     /**
      * Function to be executed before a tests (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (tests, context) {
+     //beforeTest: function (tests, context) {
     // },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
@@ -217,8 +220,11 @@ exports.config = {
     /**
      * Function to be executed after a tests (in Mocha/Jasmine).
      */
-    // afterTest: function(tests, context, { error, result, duration, passed, retries }) {
-    // },
+     afterTest: function(tests, context, { error, result, duration, passed, retries }) {
+        if (error !== undefined) {
+            browser.takeScreenshot();
+        }
+     },
 
 
     /**
@@ -243,8 +249,13 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // after: function (result, capabilities, specs) {
-    // },
+     after: function (result, capabilities, specs) {
+        let allure = require('allure-commandline');
+        let generation = allure(['generate', 'allure-results']);
+        generation.on('exit', function(exitCode) {
+            console.log('Generation is finished with code:', exitCode);
+        });
+     },
     /**
      * Gets executed right after terminating the webdriver session.
      * @param {Object} config wdio configuration object

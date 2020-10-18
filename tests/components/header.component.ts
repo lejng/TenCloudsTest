@@ -9,7 +9,7 @@ export class HeaderComponent extends BaseComponent {
         let tabText = tab.toString()
         this.waitForLoadScripts()
         let tabByText = this.navTabs.find(tab => tab.getText().includes(tabText));
-        tabByText.click();
+        this.click(tabByText, tabText);
     }
 }
 

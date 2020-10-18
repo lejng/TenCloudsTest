@@ -12,7 +12,8 @@
       "node",
       "@wdio/sync",
       "@types/mocha",
-      "@types/chai"
+      "@types/chai",
+      "@wdio/allure-reporter"
     ]
   },
   "include": [

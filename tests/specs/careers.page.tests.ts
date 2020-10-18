@@ -20,7 +20,7 @@ describe('Careers Page Tests', () => {
         headerComponent.chooseTab(HeaderNavTabsEnum.Careers)
         let cards = careersPage.getJobOffersByTitle(jobTitle)
         let actualJobCounts = cards.length
-        assert.equal(actualJobCounts, expectedJobCounts, `Incorrect job offers count with title ${jobTitle}`)
+        assert.equal(actualJobCounts, expectedJobCounts, `Incorrect job offers count with title '${jobTitle}'`)
     });
 
     it('Validate job offers search input', () => {

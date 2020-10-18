@@ -18,7 +18,7 @@ export class CareersPage extends BaseComponent{
     }
 
     searchJob(jobName: string) {
-        this.searchInput.setValue(jobName)
+        this.setValue(this.searchInput,jobName, "Search job input")
     }
 
     waitUntilPageLoaded() {

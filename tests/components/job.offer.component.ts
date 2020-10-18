@@ -8,5 +8,5 @@ export class JobOfferComponent extends BaseComponent{
         this.jobOfferElement = jobOfferElement;
     }
 
-    get title() : string {return this.jobOfferElement.$("h3").getText()}
+    get title() : string {return this.getText(this.jobOfferElement.$("h3"), "Job Offer Component")}
 }
