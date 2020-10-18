@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationDir": "dist/declarations",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "inlineSources": true,
+    "target": "ES2019",
+    "types": [
+      "node",
+      "@wdio/sync",
+      "@types/mocha",
+      "@types/chai"
+    ]
+  },
+  "include": [
+    "tests"
+  ]
+}

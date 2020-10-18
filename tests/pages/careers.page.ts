@@ -1,28 +1,28 @@
-const JobOfferComponent = require('../components/job.offer.component');
+import {JobOfferComponent} from '../components/job.offer.component';
+import {BaseComponent} from "../base/base.component";
 
-class CareersPage  {
-    get searchInput(){
+export class CareersPage extends BaseComponent{
+    get searchInput() {
         this.waitUntilPageLoaded()
         return $("//div[contains(@class,'job-offers__search')]//input")
     }
 
-    get jobOffersCards() {
+    get jobOffersCards()  {
         this.waitUntilPageLoaded();
         let jobOfferElements = $$("//div[contains(@class,'offers__wrapper')]//a")
         return jobOfferElements.map( element => new JobOfferComponent(element))
     }
 
-    getJobOffersByTitle(title){
+    getJobOffersByTitle(title: string) {
         return this.jobOffersCards.filter(card => card.title == title)
     }
 
-    searchJob(jobName){
+    searchJob(jobName: string) {
         this.searchInput.setValue(jobName)
     }
 
-    waitUntilPageLoaded(){
+    waitUntilPageLoaded() {
+        this.waitForLoadScripts()
         $("#job-offers-section").waitForDisplayed()
     }
 }
-
-module.exports = CareersPage;
